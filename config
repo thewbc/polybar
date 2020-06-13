@@ -1,0 +1,447 @@
+;=====================================================
+;
+;   To learn more about how to configure Polybar
+;   go to https://github.com/jaagr/polybar
+;
+;   The README contains alot of information
+;	Themes : https://github.com/jaagr/dots/tree/master/.local/etc/themer/themes
+;   https://github.com/jaagr/polybar/wiki/
+;   https://github.com/jaagr/polybar/wiki/Configuration
+;   https://github.com/jaagr/polybar/wiki/Formatting
+;
+;=====================================================
+
+[global/wm]
+;https://github.com/jaagr/polybar/wiki/Configuration#global-wm-settings
+margin-top = 2
+margin-bottom = 2
+
+[settings]
+;https://github.com/jaagr/polybar/wiki/Configuration#application-settings
+throttle-output = 5
+throttle-output-for = 10
+throttle-input-for = 30
+screenchange-reload = true
+compositing-background = over
+compositing-foreground = over
+compositing-overline = over
+compositing-underline = over
+compositing-border = over
+
+; Define fallback values used by all module formats
+
+
+[colors]
+; Nord theme ============
+;background = #0e0e0e
+;foreground = #fbfbfb
+;alert = #d08770
+;volume-min = #a3be8c
+;volume-med = #ebcb8b
+;volume-max = #bf616a
+; =======================
+
+background = #0e0e0e
+foreground = #D8DEE9
+black      = #0e0e0e
+red        = #BF616A
+green      = #A3BE8C
+yellow     = #EBCB8B
+blue       = #5E81AC
+magenta    = #B48EAD
+cyan       = #8FBCBB
+white      = #D8DEE9
+orange     = #D08770
+
+################################################################################
+############                  MAINBAR-BSPWM                         ############
+################################################################################
+################################################################################
+
+[bar/mainbar-bspwm]
+monitor = ${env:MONITOR}
+;monitor-fallback = HDMI1
+width = 100%
+height = 32
+;offset-x = 1%
+;offset-y = 1%
+;radius = 9.0
+fixed-center = true
+bottom = false
+separator =
+
+wm-restack = bspwm
+override-redirect = true
+
+; Enable support for inter-process messaging
+; See the Messaging wiki page for more details.
+enable-ipc = true
+
+border-size = 0
+;border-left-size = 0
+;border-right-size = 25
+;border-top-size = 0
+;border-bottom-size = 25
+
+
+;https://github.com/jaagr/polybar/wiki/Fonts
+font-0 = "Noto Sans:antialias=false:size=18;5"
+font-1 = "UbuntuMono Nerd Font:antialias=false:size=30;5"
+font-2 = "Font Awesome 5 Free:antialias=false:style=Solid:size=30;5"
+font-3 = "DejaVu Sans Mono for Powerline:antialias=false:size=30;5"
+font-4 = "Font Awesome 5 Free:antialias=false:style=Regular:size=30;5"
+
+scroll-up = bspwm-desknext
+scroll-down = bspwm-deskprev
+
+################################################################################
+############                  MAINBAR-HERBSTLUFTWM                  ############
+################################################################################
+[bar/mainbar-herbstluftwm]
+monitor = ${env:MONITOR}
+;monitor-fallback = HDMI1
+width = 100%
+height = 36
+;offset-x = 1%
+;offset-y = 1%
+;radius = 9.0
+;fixed-center = true
+bottom = false
+separator =
+
+wm-restack = bspwm
+override-redirect = true
+background = #ee0e0e0e
+foreground = #D8DEE9
+
+
+; Enable support for inter-process messaging
+; See the Messaging wiki page for more details.
+enable-ipc = true
+
+border-size = 0
+;border-left-size = 0
+;border-right-size = 25
+;border-top-size = 0
+;border-bottom-size = 25
+border-color = #0e0e0e
+
+padding-left = 0
+padding-right = 0
+
+module-margin-left = 0
+module-margin-right = 0
+module-margin-center = 0
+
+
+;https://github.com/jaagr/polybar/wiki/Fonts
+font-0 = "Noto Sans:antialias=false:size=20;5"
+font-1 = "UbuntuMono Nerd Font:antialias=false:size=32;7"
+font-2 = "Font Awesome 5 Free:antialias=false:style=Solid:size=32;7"
+font-3 = "DejaVu Sans Mono for Powerline:antialias=false:size=30;5"
+font-4 = "Font Awesome 5 Free:antialias=false:style=Regular:size=22;7"
+font-5 = "Font Awesome 5 Brands:antialias=false:size=22;7"
+
+modules-left = ra5 ra3 ewmh ra1 ra3 ra4
+modules-center = la4 la3 la1 weather la3 la2 time ra2 ra3 date ra1 ra3 ra4
+modules-right = la4 la3 la1 memory2 cpu2 la3 la2 pavolume la6 la5
+
+tray-detached =
+tray-offset-x = -1
+tray-padding = 3
+tray-maxsize = 45
+tray-scale = 1.0
+tray-position = right
+tray-background = #BF616A
+tray = right | left
+scroll-up = herbstclient use_index -1
+scroll-down = herbstclient use_index +1
+
+################################################################################
+############                       MODULE BSPWM                     ############
+################################################################################
+
+[module/herbstluftwm]
+type = internal/bspwm
+enable-click = true
+enable-scroll = true
+fuzzy-match = true
+reverse-scroll = true
+pin-workspaces = true
+
+
+icon-0 = 1;
+icon-1 = 2;
+icon-2 = 3;
+icon-3 = 4;
+icon-4 = 5;
+
+format = <label-state>
+
+label-monitor = %icon%
+label-focused = %icon%
+label-focused-background = #8FBCBB
+label-focused-padding = 3
+label-focused-font = 2
+label-focused-foreground = #f10000
+label-occupied = %icon%
+label-occupied-padding = 3
+label-occupied-font = 2
+label-occupied-background = #8FBCBB
+label-occupied-foreground = #0e0e0e
+label-empty = %icon%
+label-empty-foreground = #fbfbfb
+label-empty-padding = 0
+label-empty-font = 0
+label-empty-background = #8FBCBB
+
+
+###############################################################################
+############                       MODULES ARROWS                     ############
+[module/ra1]
+type = custom/text
+content            = %{T2}%{T-}
+content-foreground = ${colors.cyan}
+content-background = ${colors.background}
+
+[module/ra4]
+type = custom/text
+content            = %{T2}%{T-}
+content-foreground = ${colors.cyan}
+content-background = ${colors.background}
+
+[module/ra5]
+type = custom/text
+content = %{T2}%{T-}
+content-foreground = ${colors.red}
+content-background = ${colors.background}
+
+[module/ra2]
+type = custom/text
+; Label
+content            = %{T2}%{T-}
+content-foreground = ${colors.blue}
+content-background = ${colors.background}
+
+[module/ra3]
+type = custom/text
+content   = %{T2}%{T-}
+content-foreground = ${colors.background}
+content-background = ${colors.cyan}
+
+
+[module/la1]
+type = custom/text
+
+
+content            = %{T2}%{T-}
+content-foreground = ${colors.cyan}
+content-background = ${colors.background}
+
+[module/la2]
+type = custom/text
+
+; Label
+content            = %{T2}%{T-}
+content-foreground = ${colors.blue}
+content-background = ${colors.background}
+
+[module/la3]
+type = custom/text
+
+; Label
+content            = %{T2}%{T-}
+content-foreground = ${colors.background}
+content-background = ${colors.cyan}
+
+[module/la4]
+type = custom/text
+
+; Label
+content            = %{T2}%{T-}
+content-foreground = ${colors.cyan}
+content-background = ${colors.background}
+
+[module/la5]
+type = custom/text
+
+; Label
+content            = %{T2}%{T-}
+content-foreground = ${colors.red}
+content-background = ${colors.background}
+
+[module/la6]
+type = custom/text
+
+; Label
+content            = %{T2}%{T-}
+content-foreground = ${colors.background}
+content-background = ${colors.blue}
+
+###############################################################################
+############                       MODULES A-Z
+################################################################################
+[module/compton]
+;https://github.com/jaagr/polybar/wiki/User-contributed-modules#compton
+type = custom/script
+KEYBINDINGSexec = ~/.config/polybar/scripts/compton.sh
+click-left = ~/.config/polybar/scripts/compton-toggle.sh
+interval = 5separator =
+format-foreground = #0e0e0e
+format-background =
+################################################################################
+
+[module/cpu2]
+;https://github.com/jaagr/polybar/wiki/Module:-cpu
+type = internal/cpu
+; Seconds to sleep between updates
+; Default: 1
+interval = 1
+format-foreground = #0e0e0e
+format-background = #8FBCBB
+format-prefix = "   "
+format-prefix-foreground = #0e0e0e
+
+label-font = 1
+
+; Available tags:
+;   <label> (default)
+;   <bar-load>
+;   <ramp-load>
+;   <ramp-coreload>
+format = <label>
+; Available tokerbstluftwm]
+monitor = ${env:MONITOR}ns:
+;   %percentage% (default) - total cpu load
+;   %percentage-cores% - load percentage for each core
+;   %percentage-core[1-9]% - load percentage for specific core
+label = %percentage:3%%
+################################################################################
+[module/ewmh]
+type = internal/xworkspaces
+pin-workspaces = true
+enable-click = true
+enable-scroll = true
+reverse-scroll = true
+
+icon-0 = 1;
+icon-1 = 2;
+icon-2 = 3;
+icon-3 = 4;
+icon-4 = 5;
+format = <label-state>
+label-monitor = %icon%
+
+label-active = %icon%
+label-active-foreground = #f10000
+label-active-background = #8FBCBB
+label-active-padding = 3
+
+label-occupied = %icon%
+label-occupied-foreground = #ffffff
+label-occupied-background = #8FBCBB
+label-occupied-padding = 3
+
+label-empty = %icon%
+label-empty-foreground = #0e0e0e
+label-empty-padding = 3
+label-empty-background = #8FBCBB
+
+
+################################################################################
+; ===========
+; Time Module
+; ===========
+[module/time]
+type = internal/date
+; Update interval
+interval = 1.0
+; Format
+time = %H:%M
+; Label
+label            = %time%
+label-foreground = ${colors.white}
+label-background = ${colors.blue}
+label-padding    = 2
+
+; ===========
+; Date Module
+; ===========
+[module/date]
+type = internal/date
+; Update interval
+interval = 1.0
+; Format
+date = %A, %d
+; Label
+label            = %date%
+label-foreground = ${colors.black}
+label-background = ${colors.cyan}
+label-padding = 2
+
+################################################################################
+########################################################################
+[module/memory2]
+;https://github.com/jaagr/polybar/wiki/Module:-memory
+type = internal/memory
+interval = 1
+; Available tokens:
+;   %percentage_used% (default)
+;   %percentage_free%
+;   %gb_used%
+;   %gb_free%
+;   %gb_total%
+;   %mb_used%
+;   %mb_free%
+;   %mb_total%
+label = "  %percentage_used%%"
+format = <label>
+format-prefix = "   "
+format-prefix-foreground = #0e0e0e
+format-foreground = #0e0e0e
+format-background = #8FBCBB
+################################################################################
+[module/pavolume]
+type = custom/script
+tail = true
+label = "  %output% "
+exec = ~/.config/polybar/scripts/pavolume.sh --listen
+click-right = exec pavucontrol
+click-left = ~/.config/polybar/scripts/pavolume.sh --togmute
+scroll-up = ~/.config/polybar/scripts/pavolume.sh --up
+scroll-down = ~/.config/polybar/scripts/pavolume.sh --down
+format-foreground = #0e0e0e
+format-background = #5E81AC
+################################################################################
+; ==============
+; Weather Module
+; ==============
+[module/weather]
+type = custom/script
+; Script
+; Update interval
+interval = 600
+label            = %output%
+label-foreground = ${colors.black}
+label-background = ${colors.cyan}
+label-padding    = 2
+exec = python -u ~/.config/polybar/scripts/weather.py
+tail = true
+#################################################################################
+[module/xwindow]
+  ;https://github.com/jaagr/polybar/wiki/Module:-xwindow
+type = internal/xwindow
+   ; Available tokens:
+   ;   %title%
+   ; Default: %title%
+label = %title:0:20:...%
+label-maxlen = 25
+format-prefix = "     "
+format-prefix-background = #2E3440
+format-prefix-foreground = #cc0e0e0e
+format-foreground = #cc0e0e0e
+format-background = #2E3440
+
+###############################################################################
+
+# vim:ft=dosini:
